@@ -386,6 +386,45 @@ button.example-button:hover {
   color: var(--teal);
 }
 
+.score-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 2px 0 8px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 750;
+}
+
+.score-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.legend-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  box-shadow: 0 0 0 3px rgba(16, 24, 40, 0.04);
+}
+
+.legend-critical {
+  background: #ef4444;
+}
+
+.legend-high {
+  background: #f97316;
+}
+
+.legend-medium {
+  background: #eab308;
+}
+
+.legend-low {
+  background: #22c55e;
+}
+
 .stack {
   display: grid;
   gap: 14px;
