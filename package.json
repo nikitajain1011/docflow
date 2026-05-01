@@ -1,0 +1,23 @@
+{
+  "name": "strategyai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "StrategyAI turns customer feedback into concise product strategy briefs.",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "groq-sdk": "^1.1.2"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "strategy",
+    "feedback",
+    "groq",
+    "vercel"
+  ],
+  "license": "UNLICENSED"
+}

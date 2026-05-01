@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>StrategyAI &mdash; Customer Intelligence for Product Teams</title>
+    <meta
+      name="description"
+      content="StrategyAI turns customer reviews and feedback into structured product strategy briefs with pain points, opportunity areas, priority scores, and recommended direction."
+    />
+    <meta property="og:title" content="StrategyAI &#8212; Customer Intelligence for Product Teams" />
+    <meta
+      property="og:description"
+      content="Turn customer noise into strategic clarity with AI-powered feedback analysis for product teams."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <nav class="top-nav" aria-label="Primary navigation">
+      <a class="nav-logo" href="#top" aria-label="StrategyAI home">StrategyAI</a>
+      <div class="nav-links">
+        <a href="#how-it-works">How it Works</a>
+        <a href="#use-cases">Use Cases</a>
+        <a href="#about">About</a>
+      </div>
+    </nav>
+
+    <header id="top" class="hero" aria-labelledby="app-title">
+      <div class="hero-inner">
+        <div class="masthead">
+          <div>
+            <p class="eyebrow hero-eyebrow">Customer intelligence</p>
+            <h1 id="app-title">StrategyAI</h1>
+          </div>
+          <div class="status-pill" id="status-pill">Ready</div>
+        </div>
+        <p class="hero-tagline">Turn customer noise into strategic clarity</p>
+      </div>
+    </header>
+
+    <main class="app-shell">
+      <section class="workspace" aria-label="StrategyAI workspace">
+        <div class="grid">
+          <section class="input-panel" aria-label="Feedback input">
+            <label for="feedback">Customer reviews or feedback</label>
+            <textarea
+              id="feedback"
+              spellcheck="true"
+              placeholder="Paste support tickets, app reviews, interview notes, sales call snippets, or survey responses here..."
+            ></textarea>
+            <div class="actions">
+              <button id="generate" type="button">
+                <span class="button-icon" aria-hidden="true">*</span>
+                Generate Strategy Brief
+              </button>
+              <button id="sample" class="secondary" type="button">Load sample</button>
+            </div>
+            <section class="examples" aria-labelledby="examples-title">
+              <h2 id="examples-title">Try these examples</h2>
+              <div class="example-list">
+                <button class="example-button" type="button" data-example="ecommerce">
+                  <span aria-hidden="true">&#128722;</span>
+                  E-commerce
+                </button>
+                <button class="example-button" type="button" data-example="saas">
+                  <span aria-hidden="true">&#128188;</span>
+                  SaaS
+                </button>
+                <button class="example-button" type="button" data-example="food">
+                  <span aria-hidden="true">&#127829;</span>
+                  Food Delivery
+                </button>
+              </div>
+            </section>
+            <p class="hint">Your API key stays on the server. The browser sends only the feedback text to this app's backend.</p>
+          </section>
+
+          <section class="output-panel" aria-live="polite" aria-label="Strategy brief output">
+            <div id="empty-state" class="empty-state">
+              <h2>Brief output</h2>
+              <p>Generate a brief to see pain points, opportunity areas, priority scores, and product direction.</p>
+            </div>
+
+            <div id="results" class="results hidden">
+              <div class="section-heading">
+                <p class="eyebrow">Structured brief</p>
+                <h2>Top 3 Pain Points</h2>
+              </div>
+              <div id="pain-points" class="stack"></div>
+
+              <div class="section-heading">
+                <h2>Opportunity Areas</h2>
+              </div>
+              <div id="opportunities" class="stack"></div>
+
+              <div class="direction">
+                <p class="eyebrow">Recommended Product Direction</p>
+                <h2 id="direction-headline"></h2>
+                <p id="direction-summary"></p>
+                <ul id="next-steps"></ul>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="stats-banner" aria-label="StrategyAI statistics">
+        <span>Analyzes feedback in under 10 seconds</span>
+        <span>Trusted by PMs</span>
+        <span>Powered by LLaMA 3.3</span>
+      </section>
+
+      <section id="how-it-works" class="page-section" aria-labelledby="how-title">
+        <p class="eyebrow">Workflow</p>
+        <h2 id="how-title">How it Works</h2>
+        <div class="step-grid">
+          <article class="info-card step-card">
+            <div class="icon-badge" aria-hidden="true">&#9998;</div>
+            <h3>Paste Feedback</h3>
+            <p>Drop in reviews, support notes, interviews, or survey comments.</p>
+          </article>
+          <article class="info-card step-card">
+            <div class="icon-badge" aria-hidden="true">&#9889;</div>
+            <h3>AI Analyzes</h3>
+            <p>The model detects recurring friction, business impact, and urgency.</p>
+          </article>
+          <article class="info-card step-card">
+            <div class="icon-badge" aria-hidden="true">&#128202;</div>
+            <h3>Get Strategy Brief</h3>
+            <p>Review ranked pain points, opportunities, and product direction.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="use-cases" class="page-section" aria-labelledby="use-cases-title">
+        <p class="eyebrow">Use Cases</p>
+        <h2 id="use-cases-title">Built for Customer-Led Strategy</h2>
+        <div class="use-case-grid">
+          <article class="info-card">
+            <h3>Product Managers</h3>
+            <p>Turn scattered feedback into clearer roadmap priorities.</p>
+          </article>
+          <article class="info-card">
+            <h3>Consultants</h3>
+            <p>Synthesize client voice-of-customer data into sharper recommendations.</p>
+          </article>
+          <article class="info-card">
+            <h3>Business Analysts</h3>
+            <p>Spot operational patterns and quantify issue urgency faster.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="about" class="about-builder" aria-labelledby="about-title">
+        <div>
+          <p class="eyebrow">About the builder</p>
+          <h2 id="about-title">Built by Nikita Jain</h2>
+          <p>
+            MS Engineering Management student passionate about building AI tools for
+            Product teams. Connect with me on LinkedIn.
+          </p>
+        </div>
+        <a class="linkedin-button" href="https://www.linkedin.com/in/nikita-jain1011/" target="_blank" rel="noreferrer">
+          LinkedIn
+        </a>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
