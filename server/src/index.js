@@ -1,13 +1,30 @@
 import { app } from "./app.js";
-import { execSync } from "child_process";
+import bcrypt from "bcryptjs";
+import { PrismaClient } from "@prisma/client";
 
-try {
-  execSync("npx prisma db seed", { cwd: process.cwd() + "/server", stdio: "inherit" });
-} catch (e) {
-  console.log("Seed skipped:", e.message);
+const prisma = new PrismaClient();
+
+async function seedIfEmpty() {
+  const count = await prisma.user.count();
+  if (count === 0) {
+    const passwordHash = await bcrypt.hash("demo123", 12);
+    const users = [
+      { email: "alice@demo.com", name: "Alice Chen" },
+      { email: "bob@demo.com", name: "Bob Patel" },
+      { email: "carol@demo.com", name: "Carol Kim" },
+    ];
+    for (const user of users) {
+      await prisma.user.create({ data: { ...user, passwordHash } });
+    }
+    console.log("Demo users seeded.");
+  } else {
+    console.log("Users already exist, skipping seed.");
+  }
 }
 
 const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => {
-  console.log(`DocFlow API is running at http://localhost:${PORT}`);
+seedIfEmpty().then(() => {
+  app.listen(PORT, () => {
+    console.log(`DocFlow API is running at http://localhost:${PORT}`);
+  });
 });
