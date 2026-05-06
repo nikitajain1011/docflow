@@ -1,23 +1,26 @@
 {
-  "name": "strategyai",
+  "name": "docflow",
   "version": "1.0.0",
   "private": true,
-  "description": "StrategyAI turns customer feedback into concise product strategy briefs.",
+  "description": "DocFlow collaborative document editor monorepo.",
+  "workspaces": [
+    "client",
+    "server"
+  ],
   "scripts": {
-    "dev": "node server.js",
-    "start": "node server.js"
+    "install:all": "npm install",
+    "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
+    "server:dev": "npm run dev --workspace server",
+    "client:dev": "npm run dev --workspace client",
+    "prisma:migrate": "npm run prisma:migrate --workspace server",
+    "prisma:seed": "npm run prisma:seed --workspace server",
+    "test": "cd server && npm test"
   },
-  "dependencies": {
-    "groq-sdk": "^1.1.2"
+  "devDependencies": {
+    "concurrently": "^9.1.0"
   },
   "engines": {
     "node": ">=20"
   },
-  "keywords": [
-    "strategy",
-    "feedback",
-    "groq",
-    "vercel"
-  ],
   "license": "UNLICENSED"
 }

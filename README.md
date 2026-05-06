@@ -1,36 +1,63 @@
-# StrategyAI
+# DocFlow
 
-StrategyAI is a deployable web app that converts pasted customer reviews or feedback into a concise product strategy brief using the Groq API.
+DocFlow is a full-stack collaborative document editor scaffold.
 
-## Features
+## Stack
 
-- Paste customer feedback into a focused analysis workspace
-- Generate a structured brief with top pain points, opportunity areas, priority scores, and product direction
-- Keeps the Groq API key server-side
-- Runs locally with plain Node.js
-- Deploys cleanly to Vercel as a live URL
+- Client: React, Vite, React Router v6, Tailwind CSS
+- Server: Node.js, Express, Prisma ORM, SQLite, JWT auth
 
-## Local setup
+## Setup
 
-1. Set your OpenAI API key:
+```bash
+npm run install:all
+cp server/.env.example server/.env
+npm run prisma:migrate
+npm run prisma:seed
+npm run dev
+```
 
-   ```powershell
-   $env:GROQ_API_KEY="your_api_key_here"
-   ```
+The client runs on `http://localhost:5173` and proxies API calls to the server on `http://localhost:4000`.
 
-2. Start the app:
+## Demo Users
 
-   ```powershell
-   npm run dev
-   ```
+All demo users use the password `demo123`.
 
-3. Open `http://localhost:3000`.
+- `alice@demo.com`
+- `bob@demo.com`
+- `carol@demo.com`
 
-The app uses Groq model `llama-3.3-70b-versatile`.
+## Auth API
 
-## Deploy to a live URL
+- `POST /api/auth/login` with `{ "email": "...", "password": "..." }`
+- `GET /api/auth/me` with `Authorization: Bearer <token>`
 
-1. Push this folder to a GitHub repository.
-2. Import the repository in Vercel.
-3. Add an environment variable named `GROQ_API_KEY`.
-4. Deploy. Vercel will serve `public/index.html` and the serverless function at `/api/analyze`.
+## Documents API
+
+All document routes require `Authorization: Bearer <token>`.
+
+- `GET /api/documents`
+- `POST /api/documents`
+- `GET /api/documents/:id`
+- `PUT /api/documents/:id`
+- `DELETE /api/documents/:id`
+
+Document content is stored as TipTap JSON serialized into the Prisma `Document.content` field.
+
+## Upload API
+
+- `POST /api/upload` with multipart field `file`
+
+Only `.txt` and `.md` files are accepted. Uploaded text is stored as a serialized JSON wrapper and converted into TipTap document content by the editor.
+
+## Sharing API
+
+- `GET /api/users`
+- `POST /api/documents/:id/share` with `{ "userId": "..." }`
+- `DELETE /api/documents/:id/share/:userId`
+
+## Stretch Features
+
+- Editor export supports Markdown and plain text downloads.
+- Owners can open version history, preview saved versions, and restore content into the editor.
+- Version history requires running a Prisma migration after the `DocumentVersion` schema change.
